@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emoji Puzzle of Self-Love</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: hsl(185, 96%, 46%);
+      color: #070704;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #f8f6f8;
+    }
+
+    .puzzle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 160px);
+      grid-gap: 30px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .concept {
+      font-size: 1.05em;
+      margin-bottom: 10px;
+    }
+
+    select {
+      font-size: 1.2em;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fdfdfd;
+      cursor: pointer;
+    }
+
+    .message {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1s ease, transform 0.5s ease;
+      color: #f7f2f3;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Emoji Puzzle of Self-Love</h1>
+
+  <div class="puzzle-grid">
+    <!-- Original 4 -->
+    <div class="card">
+      <div class="concept">What represents Love?</div>
+      <select data-answer="💖">
+        <option value="">Select</option>
+        <option>💖</option><option>🔥</option><option>🌸</option><option>🧠</option><option>💫</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Peace?</div>
+      <select data-answer="🕊️">
+        <option value="">Select</option>
+        <option>🕊️</option><option>🎯</option><option>💣</option><option>🎵</option><option>⚡</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Growth?</div>
+      <select data-answer="🌱">
+        <option value="">Select</option>
+        <option>🌱</option><option>🎮</option><option>🌻</option><option>🪴</option><option>⏳</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Beauty?</div>
+      <select data-answer="🌸">
+        <option value="">Select</option>
+        <option>🌸</option><option>💎</option><option>🧃</option><option>🎇</option><option>📸</option>
+      </select>
+    </div>
+
+    <!-- New 4 -->
+    <div class="card">
+      <div class="concept">What represents Strength?</div>
+      <select data-answer="💪">
+        <option value="">Select</option>
+        <option>💪</option><option>🧱</option><option>⚔️</option><option>🔥</option><option>🦁</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Hope?</div>
+      <select data-answer="🌟">
+        <option value="">Select</option>
+        <option>🌟</option><option>🪐</option><option>🔮</option><option>🚀</option><option>🎇</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Healing?</div>
+      <select data-answer="🩹">
+        <option value="">Select</option>
+        <option>🩹</option><option>💊</option><option>🛌</option><option>🧘</option><option>💧</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="concept">What represents Joy?</div>
+      <select data-answer="😄">
+        <option value="">Select</option>
+        <option>😄</option><option>😂</option><option>😎</option><option>🎉</option><option>🥳</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="message" id="finalMessage">
+    🌟 *You are doing so well.*  
+    Even when it feels like the world asks too much, you show up.  
+    You love, you grow, you seek peace — and that is beautiful.  
+    
+    You are not broken. You are becoming.  
+    
+    **You are the final piece — and you make it whole.** 🧩💖
+  </div>
+
+  <script>
+    const selects = document.querySelectorAll("select");
+    const message = document.getElementById("finalMessage");
+
+    selects.forEach(select => {
+      select.addEventListener("change", checkAnswers);
+    });
+
+    function checkAnswers() {
+      let allCorrect = true;
+      selects.forEach(select => {
+        const correct = select.getAttribute("data-answer");
+        if (select.value !== correct) {
+          allCorrect = false;
+        }
+      });
+
+      if (allCorrect) {
+        message.classList.add("show");
+      } else {
+        message.classList.remove("show");
+      }
+    }
+  </script>
+
+</body>
+</html>
